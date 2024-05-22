@@ -1,19 +1,16 @@
-
-
-public class Eat_ball_for_rek {
-    int heightandwith = 20;
-    int spawnxcord = 200;
-    int spawnycord = 200;
+public class Eat_ball_for_rek extends Superclass {
 
     public Eat_ball_for_rek() {
-
+        heightAndWith = 20;
     }
 
     public int getXPos() {
-        return spawnxcord;
+        xCordinates = 200;
+        return xCordinates;
     }
 
     public int getYPos() {
-        return spawnycord;
+        yCordinates = 200;
+        return yCordinates;
     }
 }

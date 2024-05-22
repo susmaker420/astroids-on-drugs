@@ -7,6 +7,9 @@ public class Main {
 }
 
 /* TODO:
+ *   Create rektangel superclass
+
+ * Todo: time over
  *  Collison
  *  Eaitn increases
  *  Eaten dissappears

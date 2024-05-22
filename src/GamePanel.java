@@ -2,11 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements KeyListener {
     KontrollerbarRektangel kontrollerbarRektangel;
     Eat_ball_for_rek eat_ball_for_rek;
+    ArrayList<Integer> flearabollar = new ArrayList<Integer>();
+
 
     /**
      * constructor
@@ -25,9 +27,9 @@ public class GamePanel extends JPanel implements KeyListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.blue);
-        g.fillRect(kontrollerbarRektangel.xCordinates, kontrollerbarRektangel.yCordinates, kontrollerbarRektangel.heightAndWidth, kontrollerbarRektangel.heightAndWidth);
+        g.fillRect(kontrollerbarRektangel.xCordinates, kontrollerbarRektangel.yCordinates, kontrollerbarRektangel.heightAndWith, kontrollerbarRektangel.heightAndWith);
         g.setColor(Color.darkGray);
-        g.fillRect(eat_ball_for_rek.spawnxcord, eat_ball_for_rek.spawnycord, eat_ball_for_rek.heightandwith, eat_ball_for_rek.heightandwith);
+        g.fillRect(eat_ball_for_rek.yCordinates, eat_ball_for_rek.yCordinates, eat_ball_for_rek.heightAndWith, eat_ball_for_rek.heightAndWith);
     }
 
     @Override
@@ -38,44 +40,36 @@ public class GamePanel extends JPanel implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_A) {
             int xdiff = -5;
-            kontrollerbarRektangel.updateKontrollerbarRektangel(xdiff);
-            repaint();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_D) {
+            kontrollerbarRektangel.updateKontrollerbarRektangelX(xdiff);
+
+        } else if (e.getKeyCode() == KeyEvent.VK_D) {
             int xdiff = +5;
-            kontrollerbarRektangel.updateKontrollerbarRektangel(xdiff);
-            kontrollerbarRektangel.intersects(eat_ball_for_rek);
-            repaint();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_S) {
+            kontrollerbarRektangel.updateKontrollerbarRektangelX(xdiff);
+
+        } else if (e.getKeyCode() == KeyEvent.VK_S) {
             int ydiff = +5;
-            kontrollerbarRektangel.updatekontrollerbarrektangel(ydiff);
-            repaint();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_W) {
+            kontrollerbarRektangel.updateKontrollerbarrektangelY(ydiff);
+
+        } else if (e.getKeyCode() == KeyEvent.VK_W) {
             int ydiff = -5;
-            kontrollerbarRektangel.updatekontrollerbarrektangel(ydiff);
-            repaint();
+            kontrollerbarRektangel.updateKontrollerbarrektangelY(ydiff);
+
         }
+        kollakoledering();
+        repaint();
 
     }
 
     public void kollakoledering() {
         if (kontrollerbarRektangel.intersects(eat_ball_for_rek)) {
+            System.out.println(kontrollerbarRektangel.heightAndWith);
+            kontrollerbarRektangel.heightAndWith += 20;
+            System.out.println(kontrollerbarRektangel.heightAndWith);
+        } else {
 
         }
-    }
-    /*
-    public boolean intersects(Eat_ball_for_rek eatBallForRek) {
-        boolean away = false;
-        boolean touche = true;
-        int delta_x = (50 - 20);
-        int delta_y = (50 - 20);
-
 
     }
-
-     */
 
     @Override
     public void keyReleased(KeyEvent e) {
