@@ -1,14 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Eat_ball_for_rek extends Superclass {
+public class Eat_ball_for_rek extends Superclass { // tar info ifrån superclass
 
-    public Eat_ball_for_rek(int xCords, int yCords, int heighAndWidth) {
+    public Eat_ball_for_rek(int xCords, int yCords, int heighAndWidth) { // säger att den ska dom tre info från superclassen
         super(heighAndWidth, xCords, yCords);
     }
 
-    public Eat_ball_for_rek() {
-        super(20, 500, 500);
+    public Eat_ball_for_rek() {//
+        super(20, 500, 500); // betsämmer hur den ska vara
     }
 
     /*public void paintComponent(JPanel jpanel) {

@@ -1,7 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        new GameInstance();
+        new GameInstance(); // detta gör så man kan köra spelet finns inget mer att säga
 
     }
 }

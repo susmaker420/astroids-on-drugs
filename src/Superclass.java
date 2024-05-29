@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Superclass {
+public class Superclass { // denna klas ger kopplas till andra för att kunna användas
     int heightAndWith;
     int xCordinates;
     int yCordinates;
