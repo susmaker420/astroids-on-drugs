@@ -3,23 +3,35 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GamePanel extends JPanel implements KeyListener {
     KontrollerbarRektangel kontrollerbarRektangel;
     Eat_ball_for_rek eat_ball_for_rek;
-    ArrayList<Integer> flearabollar = new ArrayList<Integer>();
+    ArrayList<Eat_ball_for_rek> flerabollar = new ArrayList<>();
 
 
     /**
      * constructor
      */
     public GamePanel(int panelSize) {
+        flerabollar.add(new Eat_ball_for_rek(randomish(), randomish(), 20));
+        flerabollar.add(new Eat_ball_for_rek(randomish(), randomish(), 20));
+        flerabollar.add(new Eat_ball_for_rek(randomish(), randomish(), 20));
+        flerabollar.add(new Eat_ball_for_rek(randomish(), randomish(), 20));
+        flerabollar.add(new Eat_ball_for_rek(randomish(), randomish(), 20));
+        flerabollar.add(new Eat_ball_for_rek(randomish(), randomish(), 20));
         this.setBounds(0, 0, panelSize, panelSize);
         this.setBackground(Color.white);
         this.setFocusable(true);
         this.addKeyListener(this);
         kontrollerbarRektangel = new KontrollerbarRektangel();
-        eat_ball_for_rek = new Eat_ball_for_rek();
+        //eat_ball_for_rek = new Eat_ball_for_rek();
+    }
+
+    public int randomish() {
+        Random randomspawn = new Random();
+        return randomspawn.nextInt(10, 800);
     }
 
 
@@ -29,7 +41,12 @@ public class GamePanel extends JPanel implements KeyListener {
         g.setColor(Color.blue);
         g.fillRect(kontrollerbarRektangel.xCordinates, kontrollerbarRektangel.yCordinates, kontrollerbarRektangel.heightAndWith, kontrollerbarRektangel.heightAndWith);
         g.setColor(Color.darkGray);
-        g.fillRect(eat_ball_for_rek.yCordinates, eat_ball_for_rek.yCordinates, eat_ball_for_rek.heightAndWith, eat_ball_for_rek.heightAndWith);
+        for (int i = 0; i < flerabollar.size(); i++) {
+            Eat_ball_for_rek rekt = flerabollar.get(i);
+            g.fillRect(rekt.xCordinates, rekt.yCordinates, 20, 20);
+        }
+
+        //  g.fillRect(eat_ball_for_rek.yCordinates, eat_ball_for_rek.yCordinates, eat_ball_for_rek.heightAndWith, eat_ball_for_rek.heightAndWith);
     }
 
     @Override
@@ -61,12 +78,17 @@ public class GamePanel extends JPanel implements KeyListener {
     }
 
     public void kollakoledering() {
-        if (kontrollerbarRektangel.intersects(eat_ball_for_rek)) {
-            System.out.println(kontrollerbarRektangel.heightAndWith);
-            kontrollerbarRektangel.heightAndWith += 20;
-            System.out.println(kontrollerbarRektangel.heightAndWith);
-        } else {
+        for (int i = 0; i < flerabollar.size(); i++) {
+            Eat_ball_for_rek rekt = flerabollar.get(i);
+            if (kontrollerbarRektangel.intersects(rekt)) {
+                System.out.println(kontrollerbarRektangel.heightAndWith);
+                kontrollerbarRektangel.heightAndWith += 20;
+                System.out.println(kontrollerbarRektangel.heightAndWith);
+                flerabollar.remove(i);
+                i--;
+            } else {
 
+            }
         }
 
     }

@@ -5,9 +5,7 @@ public class KontrollerbarRektangel extends Superclass {
     //extends JPanel implements Runnable, KeyListener {
 
     public KontrollerbarRektangel() {
-        yCordinates = 300;
-        heightAndWith = 50;
-        xCordinates = 300;
+        super(50, 300, 300);
     }
 
     public void updateKontrollerbarRektangelX(int xdiff) {
@@ -22,9 +20,9 @@ public class KontrollerbarRektangel extends Superclass {
 
 
     public boolean intersects(Eat_ball_for_rek eatBallForRek) {
-        int delta_x = (xCordinates - eatBallForRek.getXPos());
-        int delta_y = (yCordinates - eatBallForRek.getYPos());
-        if (delta_x <= 0 && delta_y <= 0) {
+        int delta_x = Math.abs(this.xCordinates - eatBallForRek.xCordinates);
+        int delta_y = Math.abs(this.yCordinates - eatBallForRek.yCordinates);
+        if (delta_x <= heightAndWith && delta_y <= heightAndWith) {
             System.out.println("EATEN");
             return true;
         }
